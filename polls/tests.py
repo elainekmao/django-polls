@@ -26,7 +26,7 @@ class PollMethodTests(TestCase):
         old_poll = Poll(pub_date=timezone.now() - datetime.timedelta(days=30))
         self.assertEqual(old_poll.was_published_recently(), False)
 
-	def test_was_published_recently_with_recent_poll(self):
+    def test_was_published_recently_with_recent_poll(self):
         recent_poll = Poll(pub_date=timezone.now() - datetime.timedelta(hours=1))
         self.assertEqual(recent_poll.was_published_recently(), True)
 
@@ -45,7 +45,7 @@ class PollMethodTests(TestCase):
         response = self.client.get(reverse('polls:index'))
         self.assertQuerysetEqual(
             response.context['latest_poll_list'],
-             ['<Poll: Past poll 2.>', '<Poll: Past poll 1.>']
+            ['<Poll: Past poll 2.>', '<Poll: Past poll 1.>']
         )
 
     def test_detail_view_with_a_future_poll(self):
